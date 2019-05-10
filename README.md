@@ -2,13 +2,19 @@
 ![Project licence][licence]
 ![Egg Status][eggs]
 
-# halfbaked-diagrams
+# diagonal
 
-An attempt at a diagram generator API, using [Plantuml][plantuml] and [Quarkus][quarkus].
+An attempt at a diagram generator webapp, using [Plantuml][plantuml] and [Quarkus][quarkus].
 
 To run (in development):
 
     mvn compile quarkus:dev
+
+To build:
+
+    mvn package
+    docker build -f src/main/docker/Dockerfile.jvm -t monodot/diagonal .
+    docker run -i --rm -p 8080:8080 monodot/diagonal
 
 And to test locally - this will save the image to a file, `target/basic.png`:
 

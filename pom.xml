@@ -1,16 +1,35 @@
 <?xml version="1.0"?>
+<!--
+  ~ Diagonal, a program for generating diagrams
+  ~ Copyright (C) 2019  Tom Donohue
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
 <project
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
         xmlns="http://maven.apache.org/POM/4.0.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.cleverbuilder</groupId>
-    <artifactId>cleverbuilder-diagrams</artifactId>
-    <version>1.0-SNAPSHOT</version>
 
-    <name>Clever Builder :: Halfbaked Diagrams</name>
-    <description>A tool to generate simple diagrams for documents</description>
+    <groupId>com.cleverbuilder</groupId>
+    <artifactId>diagonal</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+
+    <name>Diagonal</name>
+    <description>A tool to generate diagrams for use in technical documents</description>
 
     <properties>
         <surefire-plugin.version>2.22.0</surefire-plugin.version>
@@ -18,6 +37,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <license-maven-plugin.version>3.0</license-maven-plugin.version>
 
         <plantuml.version>1.2019.2</plantuml.version>
     </properties>
@@ -116,6 +136,26 @@
                                 <configuration>
                                     <enableHttpUrlHandler>true
                                     </enableHttpUrlHandler>
+                                    <additionalBuildArgs>
+<!--
+                                        <additionalBuildArg>&#45;&#45;delay-class-initialization-to-runtime=net.sourceforge.plantuml.math.ConverterSvg</additionalBuildArg>
+                                        <additionalBuildArg>&#45;&#45;delay-class-initialization-to-runtime=net.sourceforge.plantuml.brotli.Dictionary</additionalBuildArg>
+                                        <additionalBuildArg>&#45;&#45;delay-class-initialization-to-runtime=sun.awt.X11.MotifDnDConstants</additionalBuildArg>
+                                        <additionalBuildArg>&#45;&#45;delay-class-initialization-to-runtime=sun.awt.X11.XDnDConstants</additionalBuildArg>
+                                        <additionalBuildArg>&#45;&#45;delay-class-initialization-to-runtime=sun.awt.X11.XSelection</additionalBuildArg>
+                                        <additionalBuildArg>&#45;&#45;delay-class-initialization-to-runtime=sun.awt.X11.WindowPropertyGetter</additionalBuildArg>
+                                        <additionalBuildArg>&#45;&#45;delay-class-initialization-to-runtime=sun.awt.X11.XWM</additionalBuildArg>
+                                        <additionalBuildArg>&#45;&#45;delay-class-initialization-to-runtime=sun.awt.X11.XWindow</additionalBuildArg>
+                                        <additionalBuildArg>&#45;&#45;delay-class-initialization-to-runtime=sun.awt.dnd.SunDropTargetContextPeer</additionalBuildArg>
+
+                                        <additionalBuildArg>&#45;&#45;delay-class-initialization-to-runtime=sun.java2d.opengl.OGLRenderQueue</additionalBuildArg>
+                                        <additionalBuildArg>&#45;&#45;delay-class-initialization-to-runtime=sun.java2d.opengl.OGLMaskBlit</additionalBuildArg>
+                                        <additionalBuildArg>&#45;&#45;delay-class-initialization-to-runtime=sun.java2d.opengl.OGLMaskFill</additionalBuildArg>
+                                        <additionalBuildArg>&#45;&#45;delay-class-initialization-to-runtime=sun.java2d.opengl.OGLRenderer</additionalBuildArg>
+                                        <additionalBuildArg>&#45;&#45;delay-class-initialization-to-runtime=sun.java2d.opengl.OGLTextRenderer</additionalBuildArg>
+                                        <additionalBuildArg>&#45;&#45;delay-class-initialization-to-runtime=sun.java2d.loops.GraphicsPrimitive</additionalBuildArg>
+-->
+                                    </additionalBuildArgs>
                                 </configuration>
                             </execution>
                         </executions>
@@ -138,6 +178,29 @@
                                 </configuration>
                             </execution>
                         </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>license</id>
+            <build>
+                <defaultGoal>license:format</defaultGoal>
+                <plugins>
+                    <plugin>
+                        <groupId>com.mycila</groupId>
+                        <artifactId>license-maven-plugin</artifactId>
+                        <version>${license-maven-plugin.version}</version>
+                        <configuration>
+                            <header>license-header.txt</header>
+                            <excludes>
+                                <exclude>**/LICENSE</exclude>
+                                <exclude>**/README.md</exclude>
+                                <exclude>.travis.yml</exclude>
+
+                            </excludes>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>

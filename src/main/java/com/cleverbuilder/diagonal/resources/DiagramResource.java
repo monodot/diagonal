@@ -1,6 +1,24 @@
-package com.cleverbuilder.diagramapp.resources;
+/*
+ * Diagonal, a program for generating diagrams
+ * Copyright (C) 2019  Tom Donohue
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 
-import com.cleverbuilder.diagramapp.diagrams.DiagramService;
+package com.cleverbuilder.diagonal.resources;
+
+import com.cleverbuilder.diagonal.diagrams.DiagramService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,6 +50,8 @@ public class DiagramResource {
     public Response standard(String body,
                              @HeaderParam("skin") String skin) throws Exception {
         ByteArrayOutputStream png = diagramService.generate(body, skin);
+
+        LOGGER.info("Received request");
 
         if (png == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
