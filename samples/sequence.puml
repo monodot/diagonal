@@ -1,0 +1,4 @@
+@startuml
+Bob -> Alice: hello
+Alice -> Fred: test message
+@enduml
