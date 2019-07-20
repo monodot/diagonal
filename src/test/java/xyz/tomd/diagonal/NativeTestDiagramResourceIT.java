@@ -16,31 +16,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.cleverbuilder.diagonal;
+package xyz.tomd.diagonal;
 
-import io.quarkus.test.junit.QuarkusTest;
-import org.junit.jupiter.api.Test;
+import io.quarkus.test.junit.SubstrateTest;
 
-import static io.restassured.RestAssured.given;
+@SubstrateTest
+public class NativeTestDiagramResourceIT extends TestDiagramResourceTest {
 
-@QuarkusTest
-public class TestDiagramResourceTest {
-
-    /**
-     * Assert that we can generate a basic diagram.
-     * Test implemented using rest-assured
-     */
-    @Test
-    public void testBasicDiagram() {
-        given()
-                .body("@startuml\n" +
-                        "Bob -> Alice: hello\n" +
-                        "Alice -> Fred: test message\n" +
-                        "@enduml")
-                .header("skin", "modern")
-                .when().post("/diagram/standard")
-                .then()
-                    .statusCode(200);
-    }
-
+    // Execute the same tests but in native mode.
 }

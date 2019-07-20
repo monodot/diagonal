@@ -21,7 +21,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="spectre.min.css">
-    <style type="text/css">
+    <style type="source/css">
         .navbar-main { padding: 1rem }
 
         .section-form { padding: 1rem; }
@@ -48,7 +48,12 @@
     <div class="section section-form">
         <div class="container grid-lg">
 
+            <p>
+                New from template:
+                <a id="template-rectangle-sequence">Rectangle Sequence</a>
+                -
 
+            </p>
             <form id="form">
                 <div class="form-group">
                     <label class="form-label" for="umlbody">Diagram code (Plantuml syntax)</label>
@@ -61,6 +66,7 @@ Bob -> Alice : hello
                     <label class="form-label" for="skinSelect">Skin</label>
                     <select class="form-select" name="skin" id="skinSelect">
                         <option value="modern">Modern</option>
+                        <option value="bradford">Bradford</option>
                     </select>
                 </div>
 
@@ -81,14 +87,21 @@ Bob -> Alice : hello
     </div>
 </div>
 
-<script type="text/javascript">
+<script type="source/javascript">
     const form = document.getElementById('form');
     const umlbody = document.getElementById('umlbody');
     const submitbutton = document.getElementById('submitbutton');
     const diagramImg = document.getElementById('diagramImg');
     const skinSelect = document.getElementById('skinSelect');
 
+    const tplRectangleSequence = document.getElementById('template-rectangle-sequence');
+
     submitbutton.onclick = submit;
+    tplRectangleSequence.onclick = templateRectangleSequence;
+
+    function templateRectangleSequence() {
+        umlbody.value = "@startuml\nrectangle \" Integration flow\"  {\n rectangle \"inner process 1\" as src\n rectangle \"inner process 2\" as tgt\n src -> tgt\n}\n@enduml";
+    }
 
     function submit(submitEvent) {
         submitbutton.classList.add("loading");
@@ -121,7 +134,7 @@ Bob -> Alice : hello
             cache: "no-cache",
             credentials: "same-origin",
             headers: {
-                "Content-Type": "text/plain",
+                "Content-Type": "source/plain",
                 "Skin": skinKey
             },
             body: puml

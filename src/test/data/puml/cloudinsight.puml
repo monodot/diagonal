@@ -1,0 +1,26 @@
+@startuml
+
+!define SPRITESURL https://raw.githubusercontent.com/rabelenda/cicon-plantuml-sprites/v1.0/sprites
+!includeurl SPRITESURL/tomcat.puml
+!includeurl SPRITESURL/kafka.puml
+!includeurl SPRITESURL/java.puml
+!includeurl SPRITESURL/cassandra.puml
+
+title Cloudinsight sprites example
+
+skinparam monochrome true
+
+'left to right direction
+
+rectangle "<$tomcat>\nwebapp" as webapp
+rectangle "<$kafka>\n" as kafka
+rectangle "<$java>\ndaemon" as daemon
+rectangle "<$cassandra>\n" as cassandra
+rectangle "Bert" as bert
+
+webapp --> kafka
+kafka -> daemon
+daemon -> bert
+bert -up-> cassandra
+
+@enduml

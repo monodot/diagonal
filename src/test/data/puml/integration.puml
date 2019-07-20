@@ -1,0 +1,31 @@
+@startuml
+skinparam dpi 400
+skinparam BackgroundColor CCCCCC
+skinparam DefaultFontName Overpass
+skinparam Shadowing false
+skinparam Padding 3
+skinparam ParticipantFontStyle bold
+skinparam linetype ortho
+
+skinparam rectangle {
+    BackgroundColor FFFFFF
+    BorderThickness 0
+    BackgroundColor<<CamelRoute>> FFFFFF
+    BackgroundColor<<CamelComponent>> BBBBBB
+    BackgroundColor<<IntegrationComponent>> 00FF00
+}
+
+hide stereotype
+
+rectangle "My Application FE" as client
+rectangle "Data Ingester" as dataingest
+rectangle "API Management" as apiman
+rectangle "Search API" as searchapi
+rectangle "Storage Manager" as smapi
+rectangle "Refresh Emitter" as emitter
+rectangle "My Server" as geoserver
+rectangle "Single Sign On" as rhsso
+
+client -down-> apiman
+
+@enduml

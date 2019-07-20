@@ -16,7 +16,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.cleverbuilder.diagonal.skins;
+package xyz.tomd.diagonal.repository;
+
+import xyz.tomd.diagonal.model.Skin;
 
 import java.util.List;
 import java.util.Set;
@@ -26,7 +28,7 @@ import java.util.Set;
  */
 public interface SkinsRepository {
 
-    List<String> getSkin(String key);
+    Skin getSkin(String key);
 
     Set<String> getSkinKeys();
 

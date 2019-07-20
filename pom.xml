@@ -24,22 +24,22 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.cleverbuilder</groupId>
+    <groupId>xyz.tomd</groupId>
     <artifactId>diagonal</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.2.0-SNAPSHOT</version>
 
     <name>Diagonal</name>
     <description>A tool to generate diagrams for use in technical documents</description>
 
     <properties>
         <surefire-plugin.version>2.22.0</surefire-plugin.version>
-        <quarkus.version>0.14.0</quarkus.version>
+        <quarkus.version>0.19.1</quarkus.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>1.8</maven.compiler.target>
         <license-maven-plugin.version>3.0</license-maven-plugin.version>
 
-        <plantuml.version>1.2019.2</plantuml.version>
+        <plantuml.version>1.2019.7</plantuml.version>
     </properties>
 
     <dependencyManagement>
@@ -58,6 +58,15 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-resteasy</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-resteasy-jsonb</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-undertow</artifactId>
         </dependency>
 
         <dependency>
@@ -178,29 +187,6 @@
                                 </configuration>
                             </execution>
                         </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>license</id>
-            <build>
-                <defaultGoal>license:format</defaultGoal>
-                <plugins>
-                    <plugin>
-                        <groupId>com.mycila</groupId>
-                        <artifactId>license-maven-plugin</artifactId>
-                        <version>${license-maven-plugin.version}</version>
-                        <configuration>
-                            <header>license-header.txt</header>
-                            <excludes>
-                                <exclude>**/LICENSE</exclude>
-                                <exclude>**/README.md</exclude>
-                                <exclude>.travis.yml</exclude>
-
-                            </excludes>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>

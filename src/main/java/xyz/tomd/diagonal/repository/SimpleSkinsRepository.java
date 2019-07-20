@@ -16,17 +16,18 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.cleverbuilder.diagonal.skins;
+package xyz.tomd.diagonal.repository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import xyz.tomd.diagonal.model.Skin;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import java.util.*;
 
 /**
- * A basic in-memory (simple) repository of skins (plantuml config) for diagrams.
+ * A basic in-memory (simple) repository of repository (plantuml config) for service.
  */
 @ApplicationScoped
 @Named("simpleSkinsRepository")
@@ -34,10 +35,10 @@ public class SimpleSkinsRepository implements SkinsRepository {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SimpleSkinsRepository.class);
 
-    private Map<String, List<String>> skins = new HashMap<>();
+    private Map<String, Skin> skins = new HashMap<>();
 
     public SimpleSkinsRepository() {
-        skins.put("modern", Arrays.asList(
+        Skin modern = new Skin("modern", Arrays.asList(
                 "skinparam dpi 400",
                 "skinparam DefaultFontName Carlito",
                 "skinparam Shadowing false",
@@ -45,19 +46,31 @@ public class SimpleSkinsRepository implements SkinsRepository {
                 "skinparam BackgroundColor Gold",
                 "skinparam ParticipantFontStyle bold"));
 
-        skins.put("bradford", Arrays.asList(
+        Skin bradford = new Skin("bradford", Arrays.asList(
                 "skinparam dpi 400",
                 "skinparam DefaultFontName Overpass",
                 "skinparam Shadowing false",
                 "skinparam Padding 3",
                 "skinparam ParticipantFontStyle bold"));
+
+        Skin bradfordReverse = new Skin("bradford-reverse", Arrays.asList(
+                "skinparam dpi 400",
+                "skinparam BackgroundColor ",
+                "skinparam DefaultFontName Overpass",
+                "skinparam Shadowing false",
+                "skinparam Padding 3",
+                "skinparam ParticipantFontStyle bold"));
+
+        skins.put("modern", modern);
+        skins.put("bradford", bradford);
+        skins.put("bradford-reverse", bradfordReverse);
     }
 
-    public void setSkins(Map<String, List<String>> skins) {
+    public void setSkins(Map<String, Skin> skins) {
         this.skins = skins;
     }
 
-    public List<String> getSkin(String key) {
+    public Skin getSkin(String key) {
         return skins.get(key);
     }
 

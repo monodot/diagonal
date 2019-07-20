@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.cleverbuilder.diagonal.resources;
+package xyz.tomd.diagonal.resource;
 
 import net.sourceforge.plantuml.SourceStringReader;
 

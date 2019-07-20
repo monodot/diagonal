@@ -16,12 +16,35 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.cleverbuilder.diagonal;
+package xyz.tomd.diagonal.model;
 
-import io.quarkus.test.junit.SubstrateTest;
+public class Diagram {
 
-@SubstrateTest
-public class NativeTestDiagramResourceIT extends TestDiagramResourceTest {
+    private String skin;
 
-    // Execute the same tests but in native mode.
+    private String source;
+
+    public Diagram() {
+    }
+
+    public Diagram(String skin, String source) {
+        this.skin = skin;
+        this.source = source;
+    }
+
+    public String getSkin() {
+        return skin;
+    }
+
+    public void setSkin(String skin) {
+        this.skin = skin;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
 }

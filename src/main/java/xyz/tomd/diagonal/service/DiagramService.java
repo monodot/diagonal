@@ -16,9 +16,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.cleverbuilder.diagonal.diagrams;
+package xyz.tomd.diagonal.service;
 
-import com.cleverbuilder.diagonal.skins.SkinsRepository;
+import xyz.tomd.diagonal.model.Skin;
+import xyz.tomd.diagonal.repository.SkinsRepository;
 import net.sourceforge.plantuml.SourceStringReader;
 import net.sourceforge.plantuml.core.DiagramDescription;
 import net.sourceforge.plantuml.preproc.Defines;
@@ -39,17 +40,16 @@ public class DiagramService {
     @Inject
     SkinsRepository skins;
 
-    public ByteArrayOutputStream generate(String body, String skin) throws IOException {
+    public ByteArrayOutputStream generate(String body, String skinId) throws IOException {
         ByteArrayOutputStream png = new ByteArrayOutputStream();
 
         LOGGER.debug("Input is: " + body);
-        LOGGER.debug("Using skin: " + skin);
+        LOGGER.debug("Using skin: " + skinId);
 
-        List<String> config = skins.getSkin(skin);
-        LOGGER.debug("Using config: " + config);
+        Skin skin = skins.getSkin(skinId);
 
         SourceStringReader reader = new SourceStringReader(Defines.createEmpty(),
-                body, config);
+                body, skin.getParams());
 
         // Write the first image to "png"
         // Returns a null string if no generation

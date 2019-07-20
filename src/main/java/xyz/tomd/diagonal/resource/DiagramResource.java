@@ -16,9 +16,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.cleverbuilder.diagonal.resources;
+package xyz.tomd.diagonal.resource;
 
-import com.cleverbuilder.diagonal.diagrams.DiagramService;
+import xyz.tomd.diagonal.model.Diagram;
+import xyz.tomd.diagonal.service.DiagramService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,7 +29,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.ByteArrayOutputStream;
 
-@Path("/diagram")
+@Path("/diagrams")
 public class DiagramResource {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DiagramResource.class);
@@ -38,20 +39,20 @@ public class DiagramResource {
 
     /**
      * Resource to generate a standard diagram
-     * @param body the Plantuml syntax to generate from
-     * @param skin the name of the skin to use
+     * @param input the unmarshalled Diagram request object
      * @return the diagram as a PNG
      * @throws Exception
      */
     @POST
     @Path("/standard")
     @Produces("image/png")
-    @Consumes(MediaType.TEXT_PLAIN)
-    public Response standard(String body,
-                             @HeaderParam("skin") String skin) throws Exception {
-        ByteArrayOutputStream png = diagramService.generate(body, skin);
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response standard(Diagram input) throws Exception {
+        LOGGER.info("Received request: skin=" + input.getSkin());
 
-        LOGGER.info("Received request");
+        ByteArrayOutputStream png = diagramService.generate(
+                input.getSource(),
+                input.getSkin());
 
         if (png == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
