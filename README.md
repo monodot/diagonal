@@ -46,7 +46,7 @@ To build and run as a native image in a container (NB: this is **not working** r
     docker run -i --name diagonal --rm -p 8080:8080 monodot/diagonal
 
 [buildstatus]: https://api.travis-ci.org/monodot/halfbaked-diagrams.svg?branch=master
-[licence]: https://img.shields.io/github/license/monodot/camel-demos.svg
+[licence]: https://img.shields.io/github/license/monodot/diagonal.svg
 [eggs]: https://img.shields.io/badge/eggs-scrambled-green.svg
 [quarkus]: https://quarkus.io/
 [plantuml]: https://github.com/plantuml/plantuml
