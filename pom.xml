@@ -39,7 +39,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <license-maven-plugin.version>3.0</license-maven-plugin.version>
 
-        <plantuml.version>1.2019.7</plantuml.version>
+        <plantuml.version>1.2023.9</plantuml.version>
     </properties>
 
     <dependencyManagement>
